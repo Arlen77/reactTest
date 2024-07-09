@@ -1,0 +1,26 @@
+name: deployment
+
+permissions:
+  contents: write
+on: push
+
+
+jobs:
+  npm-build:
+    name: npm-build job
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout data
+      uses: actions/checkout@v4
+
+    - name: install dependences
+      run:
+        npm install
+        npm run build
+        
+    - name: deploymentc:\Users\81809\AppData\Local\Temp\SGPicFaceTpBq\13992\00891ED8.png
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: build
