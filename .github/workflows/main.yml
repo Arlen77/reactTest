@@ -2,9 +2,7 @@ name: deployment
 
 permissions:
   contents: write
-
 on: push
-
 
 jobs:
   npm-build:
@@ -12,16 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout data
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: install dependences
-      run:
-        npm install
-        npm run build
-        
-    - name: deploymentc
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build
